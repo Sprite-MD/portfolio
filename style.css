@@ -1,3 +1,4 @@
+/* ── DARK THEME (default) ────────────────────────── */
 :root {
   --bg: #0d1117;
   --surface: #161b22;
@@ -15,6 +16,25 @@
   --infra-bg:#1e1e1e;   --infra-text:#8b949e;  --infra-border:#2d2d2d;
 }
 
+/* ── LIGHT THEME ─────────────────────────────────── */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f6f8fa;
+  --surface2: #dde1e6;  /* darker track so skill bars register */
+  --border: #d0d7de;
+  --accent: #0969da;
+  --accent2: #1a7f37;
+  --text: #1f2328;
+  --muted: #656d76;
+
+  --lang-bg: #ddf4ff;   --lang-text: #0550ae;  --lang-border: #b6e3ff;
+  --data-bg: #dafbe1;   --data-text: #116329;  --data-border: #aceebb;
+  --ml-bg:   #fbefff;   --ml-text:   #8250df;  --ml-border:   #d8b9f8;
+  --infra-bg:#e8ecf0;   --infra-text:#424a53;  --infra-border:#c6cdd5;  /* distinct bg, darker text */
+}
+
+html { scroll-behavior: smooth; }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -23,6 +43,7 @@ body {
   color: var(--text);
   font-size: 13px;
   min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* ── NAV ─────────────────────────────────────────── */
@@ -75,9 +96,30 @@ body {
 .nav-link:hover    { color: var(--accent); border-color: var(--accent); }
 .nav-link svg      { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
 
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.theme-toggle:hover         { color: var(--accent); border-color: var(--accent); }
+.theme-toggle svg           { width: 13px; height: 13px; fill: currentColor; display: block; }
+
+/* show sun in dark mode, moon in light mode */
+[data-theme="light"] .icon-sun  { display: none; }
+[data-theme="dark"]  .icon-moon { display: none; }
+/* fallback: no attribute = dark */
+:root:not([data-theme="light"]) .icon-moon { display: none; }
+
 /* ── PAGES ───────────────────────────────────────── */
-.page        { display: none; padding: 36px 32px; max-width: 900px; margin: 0 auto; }
-.page.active { display: block; }
+.page              { display: block; padding: 36px 32px 52px; max-width: 900px; margin: 0 auto; scroll-margin-top: 52px; }
+.page + .page      { border-top: 1px solid var(--border); }
 
 .prompt-line          { color: var(--muted); font-size: 11px; margin-bottom: 24px; }
 .prompt-line .path    { color: var(--accent2); }
@@ -130,8 +172,10 @@ body {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 8px; padding: 14px 18px; flex: 1; min-width: 100px;
 }
-.stat-val { font-size: 22px; font-weight: 500; color: var(--accent); }
-.stat-lbl { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.stat-val                     { font-size: 22px; font-weight: 500; color: var(--accent); }
+.stat-lbl                     { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.stat-card--open .stat-val    { color: var(--accent2); }
+.stat-card--open              { border-color: var(--accent2); }
 
 .stack-table                    { width: 100%; border-collapse: collapse; margin-top: 4px; }
 .stack-row                      { border-top: 1px solid var(--border); }
@@ -190,7 +234,7 @@ body {
 .proj-card-add .lbl     { font-size: 11px; color: var(--muted); }
 
 /* ── SKILLS ──────────────────────────────────────── */
-.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
 
 .skill-section {
   background: var(--surface); border: 1px solid var(--border);
@@ -259,6 +303,36 @@ textarea.form-input     { height: 80px; resize: vertical; }
   transition: opacity 0.15s;
 }
 .form-btn:hover { opacity: 0.85; }
+
+/* ── LIGHT MODE OVERRIDES ────────────────────────── */
+[data-theme="light"] .stat-card,
+[data-theme="light"] .proj-card,
+[data-theme="light"] .skill-section,
+[data-theme="light"] .contact-item,
+[data-theme="light"] .form-section {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+}
+[data-theme="light"] .proj-card:hover {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(9,105,218,0.3);
+}
+[data-theme="light"] .avatar {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+[data-theme="light"] .nav {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ── FOOTER ──────────────────────────────────────── */
+.site-footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 18px 32px 32px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--font-code);
+}
 
 /* ── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 600px) {

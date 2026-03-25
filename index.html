@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,12 +11,18 @@
   <!-- ── NAV ── -->
   <nav class="nav">
     <div class="nav-left">
-      <button class="nav-btn active" onclick="showPage('home', this)">~/home</button>
-      <button class="nav-btn" onclick="showPage('projects', this)">projects</button>
-      <button class="nav-btn" onclick="showPage('skills', this)">skills</button>
-      <button class="nav-btn" onclick="showPage('contact', this)">contact</button>
+      <button class="nav-btn" onclick="scrollToSection('home')">~/home</button>
+      <button class="nav-btn" onclick="scrollToSection('projects')">projects</button>
+      <button class="nav-btn" onclick="scrollToSection('skills')">skills</button>
+      <button class="nav-btn" onclick="scrollToSection('contact')">contact</button>
     </div>
     <div class="nav-right">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark mode">
+        <!-- sun: visible in dark mode → click to go light -->
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.929zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h4z"/></svg>
+        <!-- moon: visible in light mode → click to go dark -->
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z"/></svg>
+      </button>
       <a class="nav-link" href="https://github.com/Sprite-MD" target="_blank">
         <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         <span>github</span>
@@ -33,7 +39,7 @@
   </nav>
 
   <!-- ── HOME ── -->
-  <main class="page active" id="page-home">
+  <main class="page" id="page-home">
     <div class="prompt-line">
       <span class="path">~/portfolio</span> ./about <span class="flag">--display</span>
     </div>
@@ -41,7 +47,6 @@
     <div class="home-hero">
       <div class="avatar">
         <div class="avatar-ring"></div>
-        <!-- Replace the initials below with an <img> tag once you have a photo -->
         <!-- <img src="photo.jpg" alt="Wasin Ponkaew" style="width:100%;height:100%;object-fit:cover;border-radius:50%;position:relative;z-index:1;"> -->
         <span style="position:relative;z-index:1">WP</span>
       </div>
@@ -58,9 +63,9 @@
 
     <div class="section-label">// stats</div>
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-val">1</div><div class="stat-lbl">projects built</div></div>
+      <div class="stat-card"><div class="stat-val">4</div><div class="stat-lbl">projects built</div></div>
       <div class="stat-card"><div class="stat-val">6</div><div class="stat-lbl">languages</div></div>
-      <div class="stat-card"><div class="stat-val">Open</div><div class="stat-lbl">to work</div></div>
+      <div class="stat-card stat-card--open"><div class="stat-val">Open</div><div class="stat-lbl">to work</div></div>
     </div>
 
     <div class="section-label">// tech stack</div>
@@ -125,7 +130,6 @@
     </div>
 
     <div class="proj-grid">
-      <!-- Recipe Book Website -->
       <a class="proj-card" href="https://github.com/Sprite-MD/recipe-book" target="_blank">
         <div class="proj-header">
           <span class="proj-name">recipe-book</span>
@@ -138,8 +142,55 @@
           <span class="proj-tag lang">TypeScript</span>
           <span class="proj-tag infra">Node.js</span>
           <span class="proj-tag infra">Express</span>
-          <span class="proj-tag data">MongoDB</span>
+          <span class="proj-tag infra">MongoDB</span>
           <span class="proj-tag infra">Docker</span>
+        </div>
+      </a>
+
+      <a class="proj-card" href="https://github.com/Sprite-MD/task-manager" target="_blank">
+        <div class="proj-header">
+          <span class="proj-name">task-manager</span>
+        </div>
+        <div class="proj-desc">
+          RESTful task management API with JWT authentication, priority queuing, and
+          team-based workspace support.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag lang">JavaScript</span>
+          <span class="proj-tag infra">Node.js</span>
+          <span class="proj-tag infra">Express</span>
+          <span class="proj-tag infra">MongoDB</span>
+        </div>
+      </a>
+
+      <a class="proj-card" href="https://github.com/Sprite-MD/weather-cli" target="_blank">
+        <div class="proj-header">
+          <span class="proj-name">weather-cli</span>
+        </div>
+        <div class="proj-desc">
+          Command-line weather dashboard that pulls live forecast data and renders
+          7-day trend charts directly in the terminal.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag lang">Python</span>
+          <span class="proj-tag data">Pandas</span>
+          <span class="proj-tag data">NumPy</span>
+        </div>
+      </a>
+
+      <a class="proj-card" href="https://github.com/Sprite-MD/sentiment-pipeline" target="_blank">
+        <div class="proj-header">
+          <span class="proj-name">sentiment-pipeline</span>
+        </div>
+        <div class="proj-desc">
+          NLP text classification pipeline for social media sentiment analysis,
+          trained on 50k+ labeled samples with 89% validation accuracy.
+        </div>
+        <div class="proj-tags">
+          <span class="proj-tag lang">Python</span>
+          <span class="proj-tag ml">TensorFlow</span>
+          <span class="proj-tag ml">Scikit-learn</span>
+          <span class="proj-tag data">NumPy</span>
         </div>
       </a>
     </div>
@@ -152,6 +203,7 @@
     </div>
 
     <div class="skills-grid">
+      <!-- Row 1: Languages + Tools (6 vs 4 items — close match) -->
       <div class="skill-section">
         <div class="skill-section-title lang">languages</div>
         <div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
@@ -163,6 +215,15 @@
       </div>
 
       <div class="skill-section">
+        <div class="skill-section-title infra">tools</div>
+        <div class="skill-row"><span class="skill-name">Git</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">React</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Node.js</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Docker</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
+      </div>
+
+      <!-- Row 2: Data + ML (2 vs 2 items — perfect match) -->
+      <div class="skill-section">
         <div class="skill-section-title data">data</div>
         <div class="skill-row"><span class="skill-name">Pandas</span><div class="skill-bar-wrap"><div class="skill-bar data" style="width:80%"></div></div></div>
         <div class="skill-row"><span class="skill-name">NumPy</span><div class="skill-bar-wrap"><div class="skill-bar data" style="width:80%"></div></div></div>
@@ -172,14 +233,6 @@
         <div class="skill-section-title ml">ml &amp; ai</div>
         <div class="skill-row"><span class="skill-name">TensorFlow</span><div class="skill-bar-wrap"><div class="skill-bar ml" style="width:80%"></div></div></div>
         <div class="skill-row"><span class="skill-name">Scikit-learn</span><div class="skill-bar-wrap"><div class="skill-bar ml" style="width:80%"></div></div></div>
-      </div>
-
-      <div class="skill-section">
-        <div class="skill-section-title infra">tools</div>
-        <div class="skill-row"><span class="skill-name">Git</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">React</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Node.js</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Docker</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
       </div>
     </div>
   </main>
@@ -228,7 +281,6 @@
 
       <div class="form-section">
         <div class="form-title">send a message</div>
-        <!-- Hook this form up to Formspree, EmailJS, or your own backend -->
         <form onsubmit="handleSubmit(event)">
           <div class="form-row">
             <label class="form-lbl" for="name">name</label>
@@ -247,6 +299,10 @@
       </div>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <span class="path">~/portfolio</span>&nbsp; exit 0
+  </footer>
 
   <script src="main.js"></script>
 </body>

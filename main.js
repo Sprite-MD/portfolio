@@ -1,11 +1,40 @@
-// ── Page navigation ──────────────────────────────────────────────────────────
-function showPage(name, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+// ── Theme toggle ─────────────────────────────────────────────────────────────
+(function () {
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  // if no saved preference, the data-theme="dark" on <html> is used as default
+})();
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
 }
+
+// ── Scroll to section ────────────────────────────────────────────────────────
+function scrollToSection(name) {
+  document.getElementById('page-' + name).scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── Active nav highlight (scroll-spy) ────────────────────────────────────────
+const navBtns = document.querySelectorAll('.nav-btn');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const name = entry.target.id.replace('page-', '');
+      navBtns.forEach(b => b.classList.remove('active'));
+      navBtns.forEach(b => {
+        if (b.getAttribute('onclick').includes(`'${name}'`)) {
+          b.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-10% 0px -85% 0px' });
+
+document.querySelectorAll('.page').forEach(s => observer.observe(s));
 
 // ── Contact form ──────────────────────────────────────────────────────────────
 // TODO: replace the stub below with a real service:

@@ -13,9 +13,9 @@ GitHub repo: `portfolio` (github.com/Sprite-MD/portfolio)
 
 ```
 portfolio/
-├── index.html    # All markup — nav, home, projects, skills, contact pages
+├── index.html    # All markup — nav, home, projects, skills, contact sections, footer
 ├── style.css     # All styles — organized by section with comment headers
-├── main.js       # Page navigation + contact form stub
+├── main.js       # Theme toggle, scroll navigation, scroll-spy, contact form stub
 └── CLAUDE.md     # This file
 ```
 
@@ -23,22 +23,45 @@ No build step. No dependencies. Plain HTML, CSS, and JS — open `index.html` di
 
 ---
 
+## Layout
+
+Single-page scroll layout. All four sections (`#page-home`, `#page-projects`, `#page-skills`, `#page-contact`) are always visible and stacked vertically. The nav bar is sticky (`position: sticky; top: 0`).
+
+- **Nav buttons** call `scrollToSection(name)` → `scrollIntoView({ behavior: 'smooth' })`
+- **Active nav highlight** is driven by an `IntersectionObserver` in `main.js` (rootMargin `-10% 0px -85% 0px`), not by click handlers
+- **`scroll-margin-top: 52px`** on `.page` prevents the sticky nav from overlapping section headings when scrolled into view
+- **`html { scroll-behavior: smooth }`** in `style.css` provides a CSS-level fallback
+
+There is no tab-switching or `display: none/block` toggling. Do not reintroduce that pattern.
+
+---
+
 ## Design System
 
 ### Theme
-Terminal / GitHub dark. Do not change this without explicit instruction.
+Terminal / GitHub dark — dark mode is the default. A light mode is also supported via a toggle button in the nav bar. Do not remove the theme toggle or change the default without explicit instruction.
+
+- `data-theme="dark"` is set on `<html>` and is the default
+- `data-theme="light"` is applied by `toggleTheme()` in `main.js` and persisted to `localStorage`
+- Light mode overrides live in the `[data-theme="light"]` block at the bottom of `style.css`
+- The theme IIFE at the top of `main.js` restores saved preference on load (only if a value is set — the HTML default is used otherwise)
 
 ### Colors (CSS variables in `style.css`)
+
+Dark mode defaults (`:root`):
+
 | Variable | Value | Usage |
 |---|---|---|
 | `--bg` | `#0d1117` | Page background |
 | `--surface` | `#161b22` | Cards, nav |
-| `--surface2` | `#1c2330` | Inputs, secondary surfaces |
+| `--surface2` | `#1c2330` | Inputs, skill bar tracks, secondary surfaces |
 | `--border` | `#30363d` | All borders |
 | `--accent` | `#58a6ff` | Blue — primary accent, links |
 | `--accent2` | `#3fb950` | Green — active states, "open to work" |
 | `--text` | `#e6edf3` | Body text |
 | `--muted` | `#8b949e` | Labels, secondary text |
+
+Light mode overrides are defined in `[data-theme="light"]` in `style.css`. Card elevation in light mode is achieved with `box-shadow` rather than border changes.
 
 ### Chip / Tag Category Colors (fixed — used across Home, Projects, Skills)
 | Category | Color | CSS prefix |
@@ -59,13 +82,14 @@ Projects (project tags), and Skills (skill bars and section titles) consistently
 
 ## Locked Design Rules
 
-1. **Terminal theme stays** — dark background, monospace font, CLI-style prompt lines on each page
+1. **Terminal theme stays** — monospace font, CLI-style prompt lines on each page; dark is the default but light mode is supported
 2. **No CSS frameworks** — no Tailwind, Bootstrap, etc.
 3. **No JS frameworks** — no React, Vue, etc.
 4. **No build tools** — no Webpack, Vite, etc. (unless explicitly decided with the user)
 5. **Monospace font only** — `Courier New` is part of the identity
 6. **No fake metrics** — star counts were removed because fake data hurts credibility; don't re-add unless pulling live from the GitHub API
 7. **Color system is fixed** — 4 categories, 4 colors; don't invent new ones unilaterally
+8. **Single-page scroll layout is locked** — do not reintroduce tab-switching or `showPage()`
 
 ---
 
@@ -108,9 +132,7 @@ When a new technology is added, update it consistently across:
 
 ## Adding a New Project
 
-**Currently:** Edit the `#page-projects` section in `index.html` directly.
-
-Copy this card template and fill in the fields:
+Edit the `#page-projects` section in `index.html` directly. Copy this card template:
 
 ```html
 <a class="proj-card" href="GITHUB_URL" target="_blank">
@@ -129,12 +151,10 @@ Copy this card template and fill in the fields:
 
 Tag classes: `lang`, `data`, `ml`, `infra` — match the category color system above.
 
-**After adding a project:** Update the `projects built` stat card value on the Home page (line ~61).
+**After adding a project:** Update the `projects built` stat card value on the Home page.
 
 ### Migration threshold
-When the project count reaches **4 or more**, consider migrating to a `projects.json`
-data file rendered by a JS function, so adding a project only requires a new JSON entry
-rather than editing HTML markup. Ask the user before doing this.
+The project count is currently **4**. When it reaches **6 or more**, consider migrating to a `projects.json` data file rendered by a JS function, so adding a project only requires a new JSON entry rather than editing HTML markup. Ask the user before doing this.
 
 ---
 
@@ -168,5 +188,5 @@ Two stat cards are tied to real data — keep them accurate:
 
 - Skill bar percentages are all `80%` — need real values from the user
 - Contact form submits nothing — needs Formspree/EmailJS integration
-- No `#hash` routing — refreshing the page always resets to the Home tab
+- No hash routing for sections — refreshing the page always returns to the top
 - GitHub project links use placeholder URLs — update when repos are public
