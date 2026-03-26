@@ -13,14 +13,11 @@
     <div class="nav-left">
       <button class="nav-btn" onclick="scrollToSection('home')">~/home</button>
       <button class="nav-btn" onclick="scrollToSection('projects')">projects</button>
-      <button class="nav-btn" onclick="scrollToSection('skills')">skills</button>
       <button class="nav-btn" onclick="scrollToSection('contact')">contact</button>
     </div>
     <div class="nav-right">
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark mode">
-        <!-- sun: visible in dark mode → click to go light -->
         <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.929zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h4z"/></svg>
-        <!-- moon: visible in light mode → click to go dark -->
         <svg class="icon-moon" viewBox="0 0 24 24"><path d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z"/></svg>
       </button>
       <a class="nav-link" href="https://github.com/Sprite-MD" target="_blank">
@@ -53,7 +50,7 @@
       <div class="hero-text">
         <div class="hero-prompt">// hello, world.</div>
         <div class="hero-name">Wasin Ponkaew</div>
-        <div class="hero-title">Software Engineer</div>
+        <div class="hero-title">Web Designer and Developer</div>
         <div class="hero-desc">
           Based in Chicago, IL — open to relocation. Currently seeking full-time roles
           in software engineering.<span class="cursor"></span>
@@ -117,6 +114,8 @@
             <span class="chip infra">React</span>
             <span class="chip infra">Node.js</span>
             <span class="chip infra">Docker</span>
+            <span class="chip infra">MongoDB</span>
+            <span class="chip infra">PostgreSQL</span>
           </div>
         </td>
       </tr>
@@ -130,51 +129,68 @@
     </div>
 
     <div class="proj-grid">
-      <a class="proj-card" href="https://github.com/Sprite-MD/recipe-book" target="_blank">
+      <a class="proj-card" href="https://github.com/Sprite-MD/The-Cookbook" target="_blank">
         <div class="proj-header">
           <span class="proj-name">recipe-book</span>
         </div>
         <div class="proj-desc">
-          Full-stack web app with flippable recipe cards — name, photo, and ingredients on the front;
-          instructions and notes on the back. Users can save recipes into collections.
+          The Cookbook is a full-stack web app for managing a personal recipe collection,
+          built with React 19 and TypeScript on the frontend and Express with MongoDB on the backend.
+          Recipes are displayed as flippable cards showing ingredients on the front and numbered instructions
+          on the back, with support for photos, tags, notes, and favorites. Users can organize recipes into named collections,
+          search and filter the grid in real time, and expand any card into a full-screen interactive modal.
+          Data is persisted in MongoDB via a REST API, with import/export available as a JSON backup.
         </div>
         <div class="proj-tags">
           <span class="proj-tag lang">TypeScript</span>
+          <span class="proj-tag infra">React</span>
           <span class="proj-tag infra">Node.js</span>
           <span class="proj-tag infra">Express</span>
           <span class="proj-tag infra">MongoDB</span>
+          <span class="proj-tag infra">Mongoose</span>
           <span class="proj-tag infra">Docker</span>
         </div>
       </a>
 
-      <a class="proj-card" href="https://github.com/Sprite-MD/task-manager" target="_blank">
+      <a class="proj-card" href="https://github.com/Sprite-MD/chana-thai" target="_blank">
         <div class="proj-header">
-          <span class="proj-name">task-manager</span>
+          <span class="proj-name">chana-thai</span>
         </div>
         <div class="proj-desc">
-          RESTful task management API with JWT authentication, priority queuing, and
-          team-based workspace support.
+          Commissioned restaurant website for a local Thai restaurant in Inglewood, California.
+          Features a dynamic menu system that loads categorized items from a JSON data source and
+          a 3D stacked carousel gallery showcasing the restaurant's dishes. Built with vanilla
+          HTML, CSS, and JavaScript — no frameworks — using CSS 3D transforms, a fixed responsive
+          navbar, and a cohesive orange and black brand theme.
         </div>
         <div class="proj-tags">
           <span class="proj-tag lang">JavaScript</span>
-          <span class="proj-tag infra">Node.js</span>
-          <span class="proj-tag infra">Express</span>
-          <span class="proj-tag infra">MongoDB</span>
+          <span class="proj-tag lang">HTML</span>
+          <span class="proj-tag lang">CSS</span>
         </div>
       </a>
 
-      <a class="proj-card" href="https://github.com/Sprite-MD/weather-cli" target="_blank">
+      <a class="proj-card" href="#" target="_blank">
         <div class="proj-header">
-          <span class="proj-name">weather-cli</span>
+          <span class="proj-name">algo-backtester</span>
         </div>
         <div class="proj-desc">
-          Command-line weather dashboard that pulls live forecast data and renders
-          7-day trend charts directly in the terminal.
+          Fully event-driven algorithmic trading backtester that simulates buy/sell strategies
+          against historical market data without look-ahead bias. Supports SMA/EMA crossovers,
+          RSI, and MACD while modeling real-world conditions like commissions and slippage.
+          Performance is evaluated via Sharpe ratio, max drawdown, win rate, and profit factor,
+          and visualized through an interactive Streamlit dashboard with equity curves, drawdown
+          charts, and annotated trade logs. Modular design allows new strategies to be plugged
+          in via a base class interface; tested with pytest.
         </div>
         <div class="proj-tags">
           <span class="proj-tag lang">Python</span>
           <span class="proj-tag data">Pandas</span>
           <span class="proj-tag data">NumPy</span>
+          <span class="proj-tag data">yfinance</span>
+          <span class="proj-tag data">Plotly</span>
+          <span class="proj-tag data">Quantstats</span>
+          <span class="proj-tag infra">Streamlit</span>
         </div>
       </a>
 
@@ -193,47 +209,6 @@
           <span class="proj-tag data">NumPy</span>
         </div>
       </a>
-    </div>
-  </main>
-
-  <!-- ── SKILLS ── -->
-  <main class="page" id="page-skills">
-    <div class="prompt-line">
-      <span class="path">~/portfolio/skills</span> cat <span class="flag">skills.json</span>
-    </div>
-
-    <div class="skills-grid">
-      <!-- Row 1: Languages + Tools (6 vs 4 items — close match) -->
-      <div class="skill-section">
-        <div class="skill-section-title lang">languages</div>
-        <div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">JavaScript</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">TypeScript</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">SQL</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">HTML</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">CSS</span><div class="skill-bar-wrap"><div class="skill-bar lang" style="width:80%"></div></div></div>
-      </div>
-
-      <div class="skill-section">
-        <div class="skill-section-title infra">tools</div>
-        <div class="skill-row"><span class="skill-name">Git</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">React</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Node.js</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Docker</span><div class="skill-bar-wrap"><div class="skill-bar infra" style="width:80%"></div></div></div>
-      </div>
-
-      <!-- Row 2: Data + ML (2 vs 2 items — perfect match) -->
-      <div class="skill-section">
-        <div class="skill-section-title data">data</div>
-        <div class="skill-row"><span class="skill-name">Pandas</span><div class="skill-bar-wrap"><div class="skill-bar data" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">NumPy</span><div class="skill-bar-wrap"><div class="skill-bar data" style="width:80%"></div></div></div>
-      </div>
-
-      <div class="skill-section">
-        <div class="skill-section-title ml">ml &amp; ai</div>
-        <div class="skill-row"><span class="skill-name">TensorFlow</span><div class="skill-bar-wrap"><div class="skill-bar ml" style="width:80%"></div></div></div>
-        <div class="skill-row"><span class="skill-name">Scikit-learn</span><div class="skill-bar-wrap"><div class="skill-bar ml" style="width:80%"></div></div></div>
-      </div>
     </div>
   </main>
 
