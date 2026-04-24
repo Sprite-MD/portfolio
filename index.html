@@ -37,6 +37,7 @@
 
   <!-- ── HOME ── -->
   <main class="page" id="page-home">
+  <div class="page-inner">
     <div class="prompt-line">
       <span class="path">~/portfolio</span> ./about <span class="flag">--display</span>
     </div>
@@ -120,15 +121,20 @@
         </td>
       </tr>
     </table>
+  </div>
   </main>
 
   <!-- ── PROJECTS ── -->
   <main class="page" id="page-projects">
-    <div class="prompt-line">
-      <span class="path">~/portfolio/projects</span> ls <span class="flag">-la</span>
+  <div class="page-inner">
+    <div class="proj-section-header">
+      <div class="prompt-line">
+        <span class="path">~/portfolio/projects</span> ls <span class="flag">-la</span>
+      </div>
+      <button class="layout-toggle" id="layoutToggle" onclick="toggleProjectLayout()" title="Toggle layout">⊞ 3 cols</button>
     </div>
 
-    <div class="proj-grid">
+    <div class="proj-grid" id="projGrid">
       <a class="proj-card" href="https://github.com/Sprite-MD/The-Cookbook" target="_blank">
         <div class="proj-header">
           <span class="proj-name">recipe-book</span>
@@ -194,26 +200,33 @@
         </div>
       </a>
 
-      <a class="proj-card" href="https://github.com/Sprite-MD/sentiment-pipeline" target="_blank">
+      <a class="proj-card" href="https://github.com/Sprite-MD/novel-tracker" target="_blank">
         <div class="proj-header">
-          <span class="proj-name">sentiment-pipeline</span>
+          <span class="proj-name">novel-tracker</span>
         </div>
         <div class="proj-desc">
-          NLP text classification pipeline for social media sentiment analysis,
-          trained on 50k+ labeled samples with 89% validation accuracy.
+          A personal web novel reading tracker built to replace a manual spreadsheet workflow. Novels are listed in a
+          sortable, filterable table showing chapter progress, last read date, origin tags (Chinese, Korean, Japanese),
+          and multi-select status tags. Supports full CRUD with a modal form, live search, and bulk CSV import from a
+          Google Sheets export. Includes a stats dashboard with breakdowns by status and origin. Data is persisted in
+          a Supabase PostgreSQL database via Next.js API routes.
         </div>
         <div class="proj-tags">
-          <span class="proj-tag lang">Python</span>
-          <span class="proj-tag ml">TensorFlow</span>
-          <span class="proj-tag ml">Scikit-learn</span>
-          <span class="proj-tag data">NumPy</span>
+          <span class="proj-tag lang">TypeScript</span>
+          <span class="proj-tag lang">CSS</span>
+          <span class="proj-tag infra">Next.js</span>
+          <span class="proj-tag infra">Supabase</span>
+          <span class="proj-tag infra">PostgreSQL</span>
+          <span class="proj-tag infra">Tailwind</span>
         </div>
       </a>
     </div>
+  </div>
   </main>
 
   <!-- ── CONTACT ── -->
   <main class="page" id="page-contact">
+  <div class="page-inner">
     <div class="prompt-line">
       <span class="path">~/portfolio</span> ping <span class="flag">wasin.dev</span>
     </div>
@@ -273,10 +286,13 @@
         </form>
       </div>
     </div>
+  </div>
   </main>
 
   <footer class="site-footer">
-    <span class="path">~/portfolio</span>&nbsp; exit 0
+    <div class="page-inner">
+      <span class="path">~/portfolio</span>&nbsp; exit 0
+    </div>
   </footer>
 
   <script src="main.js"></script>

@@ -118,8 +118,12 @@ body {
 :root:not([data-theme="light"]) .icon-moon { display: none; }
 
 /* ── PAGES ───────────────────────────────────────── */
-.page              { display: block; padding: 60px 52px 80px; max-width: 1060px; margin: 0 auto; scroll-margin-top: 64px; }
-.page + .page      { border-top: 1px solid var(--border); }
+.page              { display: block; scroll-margin-top: 64px; }
+.page-inner        { max-width: 1060px; margin: 0 auto; padding: 60px 52px 80px; }
+
+#page-home         { background: var(--bg); }
+#page-projects     { background: var(--surface); }
+#page-contact      { background: var(--bg); }
 
 .prompt-line          { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
 .prompt-line .path    { color: var(--accent2); }
@@ -202,10 +206,21 @@ body {
 .chip.infra { background: var(--infra-bg); color: var(--infra-text); border-color: var(--infra-border); }
 
 /* ── PROJECTS ────────────────────────────────────── */
+.proj-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.proj-section-header .prompt-line { margin-bottom: 0; }
+
+.layout-toggle {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted); font-family: 'Courier New', monospace; font-size: 13px;
+  padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: border-color .2s, color .2s;
+}
+.layout-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
 .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.proj-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 
 .proj-card {
-  background: var(--surface); border: 1px solid var(--border);
+  background: var(--surface2); border: 1px solid var(--border);
   border-radius: 10px; padding: 28px; cursor: pointer;
   transition: border-color 0.15s; text-decoration: none; display: block;
 }
@@ -290,22 +305,23 @@ textarea.form-input     { height: 108px; resize: vertical; }
 
 /* ── FOOTER ──────────────────────────────────────── */
 .site-footer {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 22px 52px 40px;
+  background: var(--surface);
   border-top: 1px solid var(--border);
   font-size: 14px;
   color: var(--muted);
   font-family: var(--font-code);
 }
+.site-footer .page-inner { padding-top: 22px; padding-bottom: 40px; }
 
 /* ── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 600px) {
   .nav                     { padding: 0 16px; }
   .nav-btn                 { padding: 5px 10px; font-size: 13px; }
   .nav-link span           { display: none; }
-  .page                    { padding: 32px 20px; }
+  .page-inner              { padding: 32px 20px; }
   .home-hero               { flex-direction: column; }
-  .proj-grid               { grid-template-columns: 1fr; }
+  .proj-grid,
+  .proj-grid.cols-3        { grid-template-columns: 1fr; }
+  .layout-toggle           { display: none; }
   .stack-label-cell        { width: 110px; }
 }

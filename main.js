@@ -17,6 +17,14 @@ function scrollToSection(name) {
   document.getElementById('page-' + name).scrollIntoView({ behavior: 'smooth' });
 }
 
+// ── Project layout toggle ─────────────────────────────────────────────────────
+function toggleProjectLayout() {
+  const grid = document.getElementById('projGrid');
+  const btn  = document.getElementById('layoutToggle');
+  const is3  = grid.classList.toggle('cols-3');
+  btn.textContent = is3 ? '⊟ 2 cols' : '⊞ 3 cols';
+}
+
 // ── Active nav highlight (scroll-spy) ────────────────────────────────────────
 const navBtns = document.querySelectorAll('.nav-btn');
 
