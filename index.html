@@ -61,7 +61,7 @@
 
     <div class="section-label">// stats</div>
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-val">4</div><div class="stat-lbl">projects built</div></div>
+      <div class="stat-card"><div class="stat-val">5</div><div class="stat-lbl">projects built</div></div>
       <div class="stat-card"><div class="stat-val">6</div><div class="stat-lbl">languages</div></div>
       <div class="stat-card stat-card--open"><div class="stat-val">Open</div><div class="stat-lbl">to work</div></div>
     </div>
@@ -134,93 +134,7 @@
       <button class="layout-toggle" id="layoutToggle" onclick="toggleProjectLayout()" title="Toggle layout">⊞ 3 cols</button>
     </div>
 
-    <div class="proj-grid" id="projGrid">
-      <a class="proj-card" href="https://github.com/Sprite-MD/The-Cookbook" target="_blank">
-        <div class="proj-header">
-          <span class="proj-name">recipe-book</span>
-        </div>
-        <div class="proj-desc">
-          The Cookbook is a full-stack web app for managing a personal recipe collection,
-          built with React 19 and TypeScript on the frontend and Express with MongoDB on the backend.
-          Recipes are displayed as flippable cards showing ingredients on the front and numbered instructions
-          on the back, with support for photos, tags, notes, and favorites. Users can organize recipes into named collections,
-          search and filter the grid in real time, and expand any card into a full-screen interactive modal.
-          Data is persisted in MongoDB via a REST API, with import/export available as a JSON backup.
-        </div>
-        <div class="proj-tags">
-          <span class="proj-tag lang">TypeScript</span>
-          <span class="proj-tag infra">React</span>
-          <span class="proj-tag infra">Node.js</span>
-          <span class="proj-tag infra">Express</span>
-          <span class="proj-tag infra">MongoDB</span>
-          <span class="proj-tag infra">Mongoose</span>
-          <span class="proj-tag infra">Docker</span>
-        </div>
-      </a>
-
-      <a class="proj-card" href="https://github.com/Sprite-MD/chana-thai" target="_blank">
-        <div class="proj-header">
-          <span class="proj-name">chana-thai</span>
-        </div>
-        <div class="proj-desc">
-          Commissioned restaurant website for a local Thai restaurant in Inglewood, California.
-          Features a dynamic menu system that loads categorized items from a JSON data source and
-          a 3D stacked carousel gallery showcasing the restaurant's dishes. Built with vanilla
-          HTML, CSS, and JavaScript — no frameworks — using CSS 3D transforms, a fixed responsive
-          navbar, and a cohesive orange and black brand theme.
-        </div>
-        <div class="proj-tags">
-          <span class="proj-tag lang">JavaScript</span>
-          <span class="proj-tag lang">HTML</span>
-          <span class="proj-tag lang">CSS</span>
-        </div>
-      </a>
-
-      <a class="proj-card" href="#" target="_blank">
-        <div class="proj-header">
-          <span class="proj-name">algo-backtester</span>
-        </div>
-        <div class="proj-desc">
-          Fully event-driven algorithmic trading backtester that simulates buy/sell strategies
-          against historical market data without look-ahead bias. Supports SMA/EMA crossovers,
-          RSI, and MACD while modeling real-world conditions like commissions and slippage.
-          Performance is evaluated via Sharpe ratio, max drawdown, win rate, and profit factor,
-          and visualized through an interactive Streamlit dashboard with equity curves, drawdown
-          charts, and annotated trade logs. Modular design allows new strategies to be plugged
-          in via a base class interface; tested with pytest.
-        </div>
-        <div class="proj-tags">
-          <span class="proj-tag lang">Python</span>
-          <span class="proj-tag data">Pandas</span>
-          <span class="proj-tag data">NumPy</span>
-          <span class="proj-tag data">yfinance</span>
-          <span class="proj-tag data">Plotly</span>
-          <span class="proj-tag data">Quantstats</span>
-          <span class="proj-tag infra">Streamlit</span>
-        </div>
-      </a>
-
-      <a class="proj-card" href="https://github.com/Sprite-MD/novel-tracker" target="_blank">
-        <div class="proj-header">
-          <span class="proj-name">novel-tracker</span>
-        </div>
-        <div class="proj-desc">
-          A personal web novel reading tracker built to replace a manual spreadsheet workflow. Novels are listed in a
-          sortable, filterable table showing chapter progress, last read date, origin tags (Chinese, Korean, Japanese),
-          and multi-select status tags. Supports full CRUD with a modal form, live search, and bulk CSV import from a
-          Google Sheets export. Includes a stats dashboard with breakdowns by status and origin. Data is persisted in
-          a Supabase PostgreSQL database via Next.js API routes.
-        </div>
-        <div class="proj-tags">
-          <span class="proj-tag lang">TypeScript</span>
-          <span class="proj-tag lang">CSS</span>
-          <span class="proj-tag infra">Next.js</span>
-          <span class="proj-tag infra">Supabase</span>
-          <span class="proj-tag infra">PostgreSQL</span>
-          <span class="proj-tag infra">Tailwind</span>
-        </div>
-      </a>
-    </div>
+    <div class="proj-grid" id="projGrid"></div>
   </div>
   </main>
 
@@ -295,6 +209,7 @@
     </div>
   </footer>
 
+  <script src="projects.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

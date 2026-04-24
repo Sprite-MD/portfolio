@@ -15,7 +15,8 @@ GitHub repo: `portfolio` (github.com/Sprite-MD/portfolio)
 portfolio/
 ├── index.html    # All markup — nav, home, projects, skills, contact sections, footer
 ├── style.css     # All styles — organized by section with comment headers
-├── main.js       # Theme toggle, scroll navigation, scroll-spy, contact form stub
+├── projects.js   # Project data array (PROJECTS global) — edit this to add/update projects
+├── main.js       # Theme toggle, scroll navigation, scroll-spy, project renderer, contact form stub
 └── CLAUDE.md     # This file
 ```
 
@@ -132,29 +133,23 @@ When a new technology is added, update it consistently across:
 
 ## Adding a New Project
 
-Edit the `#page-projects` section in `index.html` directly. Copy this card template:
+Add a new entry to the `PROJECTS` array in `projects.js`. Copy this template:
 
-```html
-<a class="proj-card" href="GITHUB_URL" target="_blank">
-  <div class="proj-header">
-    <span class="proj-name">repo-name</span>
-  </div>
-  <div class="proj-desc">
-    One or two sentences describing what the project does.
-  </div>
-  <div class="proj-tags">
-    <span class="proj-tag lang">TypeScript</span>
-    <span class="proj-tag infra">Node.js</span>
-  </div>
-</a>
+```js
+{
+  name: "repo-name",
+  url: "https://github.com/Sprite-MD/repo-name",
+  desc: "One or two sentences describing what the project does.",
+  tags: [
+    { label: "TypeScript", cat: "lang" },
+    { label: "Node.js",    cat: "infra" },
+  ],
+},
 ```
 
-Tag classes: `lang`, `data`, `ml`, `infra` — match the category color system above.
+Tag `cat` values: `lang`, `data`, `ml`, `infra` — match the category color system above.
 
-**After adding a project:** Update the `projects built` stat card value on the Home page.
-
-### Migration threshold
-The project count is currently **4**. When it reaches **6 or more**, consider migrating to a `projects.json` data file rendered by a JS function, so adding a project only requires a new JSON entry rather than editing HTML markup. Ask the user before doing this.
+**After adding a project:** Update the `projects built` stat card value on the Home page (`index.html`).
 
 ---
 

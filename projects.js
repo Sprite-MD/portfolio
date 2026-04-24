@@ -1,0 +1,68 @@
+const PROJECTS = [
+  {
+    name: "recipe-book",
+    url: "https://github.com/Sprite-MD/The-Cookbook",
+    desc: "The Cookbook is a full-stack web app for managing a personal recipe collection, built with React 19 and TypeScript on the frontend and Express with MongoDB on the backend. Recipes are displayed as flippable cards showing ingredients on the front and numbered instructions on the back, with support for photos, tags, notes, and favorites. Users can organize recipes into named collections, search and filter the grid in real time, and expand any card into a full-screen interactive modal. Data is persisted in MongoDB via a REST API, with import/export available as a JSON backup.",
+    tags: [
+      { label: "TypeScript", cat: "lang" },
+      { label: "React",      cat: "infra" },
+      { label: "Node.js",    cat: "infra" },
+      { label: "Express",    cat: "infra" },
+      { label: "MongoDB",    cat: "infra" },
+      { label: "Mongoose",   cat: "infra" },
+      { label: "Docker",     cat: "infra" },
+    ],
+  },
+  {
+    name: "chana-thai",
+    url: "https://github.com/Sprite-MD/chana-thai",
+    desc: "Commissioned restaurant website for a local Thai restaurant in Inglewood, California. Features a dynamic menu system that loads categorized items from a JSON data source and a 3D stacked carousel gallery showcasing the restaurant's dishes. Built with vanilla HTML, CSS, and JavaScript — no frameworks — using CSS 3D transforms, a fixed responsive navbar, and a cohesive orange and black brand theme.",
+    tags: [
+      { label: "JavaScript", cat: "lang" },
+      { label: "HTML",       cat: "lang" },
+      { label: "CSS",        cat: "lang" },
+    ],
+  },
+  {
+    name: "algo-backtester",
+    url: "#",
+    desc: "Fully event-driven algorithmic trading backtester that simulates buy/sell strategies against historical market data without look-ahead bias. Supports SMA/EMA crossovers, RSI, and MACD while modeling real-world conditions like commissions and slippage. Performance is evaluated via Sharpe ratio, max drawdown, win rate, and profit factor, and visualized through an interactive Streamlit dashboard with equity curves, drawdown charts, and annotated trade logs. Modular design allows new strategies to be plugged in via a base class interface; tested with pytest.",
+    tags: [
+      { label: "Python",      cat: "lang" },
+      { label: "Pandas",      cat: "data" },
+      { label: "NumPy",       cat: "data" },
+      { label: "yfinance",    cat: "data" },
+      { label: "Plotly",      cat: "data" },
+      { label: "Quantstats",  cat: "data" },
+      { label: "Streamlit",   cat: "infra" },
+    ],
+  },
+  {
+    name: "novel-tracker",
+    url: "https://github.com/Sprite-MD/novel-tracker",
+    desc: "A personal web novel reading tracker built to replace a manual spreadsheet workflow. Novels are listed in a sortable, filterable table showing chapter progress, last read date, origin tags (Chinese, Korean, Japanese), and multi-select status tags. Supports full CRUD with a modal form, live search, and bulk CSV import from a Google Sheets export. Includes a stats dashboard with breakdowns by status and origin. Data is persisted in a Supabase PostgreSQL database via Next.js API routes.",
+    tags: [
+      { label: "TypeScript",  cat: "lang" },
+      { label: "CSS",         cat: "lang" },
+      { label: "Next.js",     cat: "infra" },
+      { label: "Supabase",    cat: "infra" },
+      { label: "PostgreSQL",  cat: "infra" },
+      { label: "Tailwind",    cat: "infra" },
+    ],
+  },
+  {
+    name: "finance-dashboard",
+    url: "https://github.com/Sprite-MD/finance-dashboard",
+    desc: "A personal multi-card credit card spending dashboard for tracking and analyzing transactions from CSV exports. Features a category donut chart, month-over-month KPI trend deltas, and a year-over-year spending comparison chart. Supports uploads from six major US banks with automatic column detection and a card assignment dialog. Includes a sortable, searchable transaction table with auto-cleaned merchant names, per-card management (rename, delete, merge), and date preset filters. Data is persisted in SQLite via Prisma with a REST API built on Next.js App Router route handlers.",
+    tags: [
+      { label: "TypeScript",  cat: "lang" },
+      { label: "CSS",         cat: "lang" },
+      { label: "Recharts",    cat: "data" },
+      { label: "Next.js",     cat: "infra" },
+      { label: "React",       cat: "infra" },
+      { label: "Prisma",      cat: "infra" },
+      { label: "SQLite",      cat: "infra" },
+      { label: "Tailwind",    cat: "infra" },
+    ],
+  },
+];

@@ -17,6 +17,17 @@ function scrollToSection(name) {
   document.getElementById('page-' + name).scrollIntoView({ behavior: 'smooth' });
 }
 
+// ── Project renderer ─────────────────────────────────────────────────────────
+(function renderProjects() {
+  const grid = document.getElementById('projGrid');
+  grid.innerHTML = PROJECTS.map(p => `
+    <a class="proj-card" href="${p.url}" target="_blank">
+      <div class="proj-header"><span class="proj-name">${p.name}</span></div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tags">${p.tags.map(t => `<span class="proj-tag ${t.cat}">${t.label}</span>`).join('')}</div>
+    </a>`).join('');
+})();
+
 // ── Project layout toggle ─────────────────────────────────────────────────────
 function toggleProjectLayout() {
   const grid = document.getElementById('projGrid');
